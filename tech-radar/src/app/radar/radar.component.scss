@@ -1,0 +1,34 @@
+.circle-top-left {
+    height: 400px;
+    width: 400px;
+    background-color: #bbb;
+    border-top-left-radius: 100%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.circle-top-right {
+    height: 400px;
+    width: 400px;
+    background-color: #bbb;
+    border-top-right-radius: 100%;
+    display: inline-block;
+}
+
+.circle-bottom-left {
+    height: 400px;
+    width: 400px;
+    background-color: #bbb;
+    border-bottom-left-radius: 100%;
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.circle-bottom-right {
+    height: 400px;
+    width: 400px;
+    background-color: #bbb;
+    border-bottom-right-radius: 100%;
+    display: inline-block;
+}
