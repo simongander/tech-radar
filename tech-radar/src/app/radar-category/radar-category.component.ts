@@ -12,17 +12,17 @@ import { Technology } from '../models/technology';
 export class RadarCategoryComponent {
 
   constructor(techRadarService: TechRadarServiceService, private route: ActivatedRoute) {
-    this.rings = techRadarService.GetRings();
-    this.categories = techRadarService.GetCategories();
-    this.technologies = techRadarService.GetTechnologies();
+    techRadarService.GetRings().subscribe(value => { this.rings.push(value) });
+    techRadarService.GetCategories().subscribe(value => { this.categories.push(value) });
+    techRadarService.GetTechnologies().subscribe(value => { this.technologies.push(value) });
     this.route.paramMap.subscribe(params => this.category = params.get('category')!)
   }
 
   public name: string = "Simon"
 
-  public rings: string[]
-  public categories: string[]
-  public technologies: Technology[]
+  public rings: string[] = []
+  public categories: string[] = []
+  public technologies: Technology[] = []
   public columns: string[] = ["name", "description"]
   public category: string = ""
 }

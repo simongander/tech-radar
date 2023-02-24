@@ -1,7 +1,17 @@
 <div class="grid main">
-    <div class="col-2"></div>
-    <div class="col-8">
+    <mat-toolbar color="primary">
+        <button mat-icon-button>
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Tech-Radar</span>
+          <span class="toolbar-spacer"></span>
+          <button mat-icon-button (click)="openAdminPage()">
+            <mat-icon>login</mat-icon>
+          </button>
+      </mat-toolbar>
+    <div class="col-1 lg:col-2"></div>
+    <div class="col-10 lg:col-8">
         <router-outlet></router-outlet>
     </div>
-    <div class="col-2"></div>
+    <div class="col-1 lg:col-2"></div>
 </div>

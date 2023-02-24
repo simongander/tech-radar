@@ -5,6 +5,23 @@
     border-top-left-radius: 100%;
     display: inline-block;
     margin-right: 10px;
+    position: relative;
+    @media screen and (max-width: 992px) {
+        height: 100px;
+        width: 100px;
+    }
+    span {
+        @media screen and (max-width: 992px) {
+            font-size: medium;
+        }
+        font-size: xx-large;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+}
+.circle-top-left:hover {
+    background-color: #aaa;
 }
 
 .circle-top-right {
@@ -13,6 +30,23 @@
     background-color: #bbb;
     border-top-right-radius: 100%;
     display: inline-block;
+    position: relative;
+    @media screen and (max-width: 992px) {
+        height: 100px;
+        width: 100px;
+    }
+    span {
+        @media screen and (max-width: 992px) {
+            font-size: medium;
+        }
+        font-size: xx-large;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+}
+.circle-top-right:hover {
+    background-color: #aaa;
 }
 
 .circle-bottom-left {
@@ -23,6 +57,23 @@
     display: inline-block;
     margin-right: 10px;
     margin-top: 10px;
+    position: relative;
+    @media screen and (max-width: 992px) {
+        height: 100px;
+        width: 100px;
+    }
+    span {
+        @media screen and (max-width: 992px) {
+            font-size: medium;
+        }
+        font-size: xx-large;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+.circle-bottom-left:hover {
+    background-color: #aaa;
 }
 
 .circle-bottom-right {
@@ -31,4 +82,21 @@
     background-color: #bbb;
     border-bottom-right-radius: 100%;
     display: inline-block;
+    position: relative;
+    @media screen and (max-width: 992px) {
+        height: 100px;
+        width: 100px;
+    }
+    span {
+        @media screen and (max-width: 992px) {
+            font-size: medium;
+        }
+        font-size: xx-large;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+.circle-bottom-right:hover {
+    background-color: #aaa;
 }

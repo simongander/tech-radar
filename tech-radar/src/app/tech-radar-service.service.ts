@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Technology } from './models/technology';
 import { HttpClient } from '@angular/common/http'
+import { from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,36 +12,38 @@ export class TechRadarServiceService {
     //const test = this.http.get<Technology[]>("/test")
    }
 
-  GetRings(): string[] {
-    return [
+  GetRings(): Observable<string> {
+    return from([
       "Assess",
       "Trial",
       "Adopt",
       "Hold"
-    ]
+    ])
   }
 
-  GetCategories(): string[] {
-    return [
+  GetCategories(): Observable<string> {
+    return from([
       "Techniques",
       "Platforms",
       "Tools",
       "Languages & Frameworks"
-    ]
+    ])
   }
 
-  GetTechnologies(): Technology[] {
-    return [
+  GetTechnologies(): Observable<Technology> {
+    return from([
       {
         name: "Angular",
         description: "Js Framework",
-        category: "Languages & Frameworks"
+        category: "Languages & Frameworks",
+        ring: "hold"
       },
       {
         name: "vue.js",
         description: "Js Framework",
-        category: "Languages & Frameworks"
+        category: "Languages & Frameworks",
+        ring: "hold"
       }
-    ]
+    ])
   }
 }
