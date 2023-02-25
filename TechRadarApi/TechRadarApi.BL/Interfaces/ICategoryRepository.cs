@@ -10,5 +10,6 @@ namespace TechRadarApi.BL.Interfaces
     public interface ICategoryRepository
     {
         Category? GetCategoryById(int id);
+        List<Category> GetCategories();
     }
 }

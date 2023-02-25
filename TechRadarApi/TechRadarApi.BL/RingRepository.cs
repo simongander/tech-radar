@@ -27,7 +27,11 @@ namespace TechRadarApi.BL
             }
 
             return rings.First();
+        }
 
+        public List<Ring> GetRings()
+        {
+            return _context.Rings.ToList();
         }
     }
 }

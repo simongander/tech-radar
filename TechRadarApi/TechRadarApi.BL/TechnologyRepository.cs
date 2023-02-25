@@ -28,5 +28,43 @@ namespace TechRadarApi.BL
 
             return technologies.First();
         }
+
+        public List<Technology> GetTechnologies(int id, int categoryId)
+        {
+            return _context.Technologies.Where(t => t.TechnologyId == id && t.CategoryId == categoryId).ToList();
+        }
+
+        public List<Technology> GetTechnologies(int id, int categoryId, int ringId)
+        {
+            return _context.Technologies.Where(t => t.TechnologyId == id && t.CategoryId == categoryId && t.RingId == ringId).ToList();
+        }
+
+        public Technology AddTechnology(Technology technology)
+        {
+            if (IsTechnologyValid(technology))
+            {
+                var entity = _context.Technologies.Add(technology);
+                return entity.Entity;
+            }
+
+            throw new ArgumentException("Invalid data in technology");
+        }
+
+        private bool IsTechnologyValid(Technology technology)
+        {
+            if (technology.CategoryId == 0)
+            {
+                return false;
+            }
+            if (string.IsNullOrEmpty(technology.Description))
+            {
+                return false;
+            }
+            if (string.IsNullOrEmpty(technology.Name) && technology.Name.Length <= 255)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

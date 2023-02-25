@@ -29,5 +29,10 @@ namespace TechRadarApi.BL
 
             return categories.First();
         }
+
+        public List<Category> GetCategories()
+        {
+            return _context.Categories.ToList();
+        }
     }
 }

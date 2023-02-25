@@ -10,5 +10,6 @@ namespace TechRadarApi.BL.Interfaces
     public interface IRingRepository
     {
         Ring? GetRingById(int id);
+        List<Ring> GetRings();
     }
 }
