@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Category } from '../models/category';
+import { Ring } from '../models/ring';
 import { Technology } from '../models/technology';
 import { TechRadarServiceService } from '../tech-radar-service.service';
 
@@ -11,18 +13,26 @@ import { TechRadarServiceService } from '../tech-radar-service.service';
 export class EditComponent {
 
   constructor(techRadarService: TechRadarServiceService, private router: Router){
-    techRadarService.GetRings().subscribe(value => { this.rings.push(value) });
-    techRadarService.GetCategories().subscribe(value => { this.categories.push(value) });
+    techRadarService.GetRings().subscribe(value => {
+      for(const ring of value){
+        this.rings.push(ring)
+      }
+     });
+    techRadarService.GetCategories().subscribe(value => {
+      for(const category of value){
+        this.categories.push(category) 
+      }
+     });
   }
 
   @Input()
   addMode: boolean = false;
 
   @Input()
-  radarItem: Technology = { name:"", description:"", category:"", ring: "" };
+  radarItem: Technology = { technologyId: 0, name:"", description:"", categoryId: 0, ringId: 0 };
 
-  categories: string[] = [];
-  rings: string[] = [];
+  categories: Category[] = [];
+  rings: Ring[] = [];
 
   saveAndPublish() {
     

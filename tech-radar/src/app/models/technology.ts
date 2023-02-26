@@ -1,6 +1,7 @@
 export interface Technology {
-    name: string;
-    description: string;
-    category: string;
-    ring: string;
+    technologyId: number,
+    name: string,
+    description: string,
+    categoryId: number,
+    ringId: number
 }

@@ -18,7 +18,7 @@
             <div class="col-12">
                 <mat-form-field appearance="outline" class="fill">
                     <mat-label>Category</mat-label>
-                    <mat-select [(ngModel)]="radarItem.category" name="category">
+                    <mat-select [(ngModel)]="radarItem.categoryId" name="category">
                         <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -26,7 +26,7 @@
             <div class="col-12">
                 <mat-form-field appearance="outline" class="fill">
                     <mat-label>Ring</mat-label>
-                    <mat-select [(ngModel)]="radarItem.ring" name="ring">
+                    <mat-select [(ngModel)]="radarItem.ringId" name="ring">
                         <mat-option *ngFor="let ring of rings" [value]="ring">{{ ring }}</mat-option>
                     </mat-select>
                 </mat-form-field>

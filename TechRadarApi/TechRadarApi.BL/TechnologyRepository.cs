@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechRadarApi.BL.Data;
 using TechRadarApi.BL.Interfaces;
 using TechRadarApi.DAL;
 using TechRadarApi.DAL.Model;
@@ -39,18 +40,19 @@ namespace TechRadarApi.BL
             return _context.Technologies.Where(t => t.TechnologyId == id && t.CategoryId == categoryId && t.RingId == ringId).ToList();
         }
 
-        public Technology AddTechnology(Technology technology)
+        public Technology AddTechnology(TechnologyDTO technology)
         {
             if (IsTechnologyValid(technology))
             {
-                var entity = _context.Technologies.Add(technology);
+                var entity = _context.Technologies.Add(ConvertTechnology(technology));
+                _context.SaveChanges();
                 return entity.Entity;
             }
 
             throw new ArgumentException("Invalid data in technology");
         }
 
-        private bool IsTechnologyValid(Technology technology)
+        private bool IsTechnologyValid(TechnologyDTO technology)
         {
             if (technology.CategoryId == 0)
             {
@@ -65,6 +67,19 @@ namespace TechRadarApi.BL
                 return false;
             }
             return true;
+        }
+
+        private Technology ConvertTechnology(TechnologyDTO technology)
+        {
+            return new Technology
+            {
+                Name = technology.Name,
+                Description = technology.Description,
+                Explanation = technology.Explanation,
+                CategoryId = technology.CategoryId,
+                RingId = technology?.RingId
+                
+            };
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TechRadarApi.BL.Data;
 using TechRadarApi.BL.Interfaces;
 using TechRadarApi.DAL.Model;
 
 namespace TechRadarApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class TechnologyController : ControllerBase
     {
@@ -23,19 +24,19 @@ namespace TechRadarApi.Controllers
         }
 
         [HttpGet]
-        public List<Technology> GetTechnologies([FromQuery]int id, [FromQuery]int categoryId)
+        public List<Technology> GetTechnologiesInCategory([FromQuery]int id, [FromQuery]int categoryId)
         {
-            return GetTechnologies(id, categoryId);
+            return _technologyRepository.GetTechnologies(id, categoryId);
         }
 
         [HttpGet]
-        public List<Technology> GetTechnologies([FromQuery] int id, [FromQuery] int categoryId, [FromQuery]int ringId)
+        public List<Technology> GetTechnologiesInCategoryRing([FromQuery] int id, [FromQuery] int categoryId, [FromQuery]int ringId)
         {
-            return GetTechnologies(id, categoryId, ringId);
+            return _technologyRepository.GetTechnologies(id, categoryId, ringId);
         }
 
         [HttpPost]
-        public Technology? AddTechnology([FromBody] Technology technology)
+        public Technology? AddTechnology([FromBody] TechnologyDTO technology)
         {
             try
             {

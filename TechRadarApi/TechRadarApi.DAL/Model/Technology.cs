@@ -18,12 +18,11 @@ namespace TechRadarApi.DAL.Model
         public string Description { get; set; }
         public string? Explanation { get; set; }
 
-        public int RingId { get; set; }
-        public Ring Ring { get; set; }
+        public int? RingId { get; set; }
+        public Ring? Ring { get; set; }
 
         [Required]
         public int CategoryId { get; set; }
-        [Required]
         public Category Category { get; set; }
     }
 }
