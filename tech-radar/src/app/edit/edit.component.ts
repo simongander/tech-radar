@@ -12,6 +12,8 @@ import { TechRadarServiceService } from '../tech-radar-service.service';
 })
 export class EditComponent {
 
+public techRadarService: TechRadarServiceService
+
   constructor(techRadarService: TechRadarServiceService, private router: Router){
     techRadarService.GetRings().subscribe(value => {
       for(const ring of value){
@@ -23,6 +25,8 @@ export class EditComponent {
         this.categories.push(category) 
       }
      });
+
+     this.techRadarService = techRadarService
   }
 
   @Input()

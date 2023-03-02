@@ -24,15 +24,15 @@ namespace TechRadarApi.Controllers
         }
 
         [HttpGet]
-        public List<Technology> GetTechnologiesInCategory([FromQuery]int id, [FromQuery]int categoryId)
+        public List<Technology> GetTechnologiesInCategory([FromQuery]int categoryId)
         {
-            return _technologyRepository.GetTechnologies(id, categoryId);
+            return _technologyRepository.GetTechnologies(categoryId);
         }
 
         [HttpGet]
-        public List<Technology> GetTechnologiesInCategoryRing([FromQuery] int id, [FromQuery] int categoryId, [FromQuery]int ringId)
+        public List<Technology> GetTechnologiesInCategoryRing([FromQuery] int categoryId, [FromQuery]int ringId)
         {
-            return _technologyRepository.GetTechnologies(id, categoryId, ringId);
+            return _technologyRepository.GetTechnologies(categoryId, ringId);
         }
 
         [HttpPost]

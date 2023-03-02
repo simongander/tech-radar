@@ -30,14 +30,14 @@ namespace TechRadarApi.BL
             return technologies.First();
         }
 
-        public List<Technology> GetTechnologies(int id, int categoryId)
+        public List<Technology> GetTechnologies(int categoryId)
         {
-            return _context.Technologies.Where(t => t.TechnologyId == id && t.CategoryId == categoryId).ToList();
+            return _context.Technologies.Where(t => t.CategoryId == categoryId).ToList();
         }
 
-        public List<Technology> GetTechnologies(int id, int categoryId, int ringId)
+        public List<Technology> GetTechnologies(int categoryId, int ringId)
         {
-            return _context.Technologies.Where(t => t.TechnologyId == id && t.CategoryId == categoryId && t.RingId == ringId).ToList();
+            return _context.Technologies.Where(t => t.CategoryId == categoryId && t.RingId == ringId).ToList();
         }
 
         public Technology AddTechnology(TechnologyDTO technology)

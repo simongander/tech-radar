@@ -33,17 +33,16 @@ export class RadarCategoryComponent {
       }
     });
   }
-
-  public name: string = "Simon"
-
+  
   public rings: Ring[] = []
   public categories: Category[] = []
   public technologies: Technology[] = []
   public columns: string[] = ["name", "description", "explanation"]
   public categoryName: string = ""
-  public category: Category = { categoryId: 0, name: "", description: ""}
+  public category: Category = { categoryId: 0, name: "", description: "" }
 
-  public getTechnologies(ringId: number): Technology[]  {
-    return this.technologies.filter(tech => tech.ringId === ringId)
+  public getTechnologies(ringId: number): Technology[] {
+    let tech = this.technologies.filter(tech => tech.ringId === ringId)
+    return tech
   }
 }

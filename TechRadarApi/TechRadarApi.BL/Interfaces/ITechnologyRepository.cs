@@ -11,8 +11,8 @@ namespace TechRadarApi.BL.Interfaces
     public interface ITechnologyRepository
     {
         Technology? GetTechnologyById(int id);
-        List<Technology> GetTechnologies(int id, int categoryId);
-        List<Technology> GetTechnologies(int id, int categoryId, int ringId);
+        List<Technology> GetTechnologies(int categoryId);
+        List<Technology> GetTechnologies(int categoryId, int ringId);
         Technology AddTechnology(TechnologyDTO technology);
     }
 }
