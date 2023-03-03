@@ -15,6 +15,7 @@ export class EditComponent {
 public techRadarService: TechRadarServiceService
 
   constructor(techRadarService: TechRadarServiceService, private router: Router){
+    this.radarItem = { technologyId: 0, name:"", description:"", explanation: "", categoryId: 0, ringId: 0, isPublished: false };
     techRadarService.GetRings().subscribe(value => {
       for(const ring of value){
         this.rings.push(ring)
@@ -33,17 +34,25 @@ public techRadarService: TechRadarServiceService
   addMode: boolean = false;
 
   @Input()
-  radarItem: Technology = { technologyId: 0, name:"", description:"", categoryId: 0, ringId: 0 };
+  radarItem: Technology;
 
   categories: Category[] = [];
   rings: Ring[] = [];
 
   saveAndPublish() {
-    
+    this.radarItem.isPublished = true
+    this.techRadarService.AddOrEditTechnology(this.addMode, this.radarItem).subscribe(() => {
+      alert("Technology saved and published")
+      this.router.navigateByUrl('admin')
+    })
   }
   
   save() {
-    
+    this.radarItem.isPublished = false
+    this.techRadarService.AddOrEditTechnology(this.addMode, this.radarItem).subscribe(() => {
+      alert("Technology saved")
+      this.router.navigateByUrl('admin')
+    })
   }
 
   exit() {

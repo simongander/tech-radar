@@ -24,5 +24,7 @@ namespace TechRadarApi.DAL.Model
         [Required]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        [Required]
+        public bool IsPublished { get; set; }
     }
 }

@@ -36,11 +36,11 @@ namespace TechRadarApi.Controllers
         }
 
         [HttpPost]
-        public Technology? AddTechnology([FromBody] TechnologyDTO technology)
+        public Technology? AddTechnology([FromQuery]bool createNew, [FromBody] TechnologyDTO technology)
         {
             try
             {
-                var savedTechnology = _technologyRepository.AddTechnology(technology);
+                var savedTechnology = _technologyRepository.AddTechnology(createNew, technology);
                 return savedTechnology;
             }
             catch (ArgumentException)

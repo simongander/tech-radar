@@ -13,6 +13,6 @@ namespace TechRadarApi.BL.Interfaces
         Technology? GetTechnologyById(int id);
         List<Technology> GetTechnologies(int categoryId);
         List<Technology> GetTechnologies(int categoryId, int ringId);
-        Technology AddTechnology(TechnologyDTO technology);
+        Technology AddTechnology(bool createNew, TechnologyDTO technology);
     }
 }

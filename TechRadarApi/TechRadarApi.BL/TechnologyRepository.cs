@@ -32,54 +32,87 @@ namespace TechRadarApi.BL
 
         public List<Technology> GetTechnologies(int categoryId)
         {
-            return _context.Technologies.Where(t => t.CategoryId == categoryId).ToList();
+            return _context.Technologies.Where(t => t.CategoryId == categoryId && t.IsPublished).ToList();
         }
 
         public List<Technology> GetTechnologies(int categoryId, int ringId)
         {
-            return _context.Technologies.Where(t => t.CategoryId == categoryId && t.RingId == ringId).ToList();
+            return _context.Technologies.Where(t => t.CategoryId == categoryId && t.RingId == ringId && t.IsPublished).ToList();
         }
 
-        public Technology AddTechnology(TechnologyDTO technology)
+        public Technology AddTechnology(bool createNew, TechnologyDTO technology)
         {
-            if (IsTechnologyValid(technology))
+            if (IsTechnologyValid(technology, createNew))
             {
-                var entity = _context.Technologies.Add(ConvertTechnology(technology));
-                _context.SaveChanges();
-                return entity.Entity;
+                if (createNew)
+                {
+                    var entity = _context.Technologies.Add(ConvertTechnology(technology, createNew));
+                    _context.SaveChanges();
+                    return entity.Entity;
+                }
+                else
+                {
+                    var entities = _context.Technologies.Where(t => t.TechnologyId == technology.Id);
+                    if(entities.Count() == 0)
+                    {
+                        throw new ArgumentException($"No entity with id { technology.Id } found");
+                    }
+
+                    var entity = entities.First();
+                    entity.Name = technology.Name;
+                    entity.Description =  technology.Description;
+                    entity.Explanation = technology.Explanation;
+                    entity.IsPublished = technology.IsPublished;
+                    entity.CategoryId = technology.CategoryId;
+                    entity.RingId = technology.RingId;
+                    _context.Technologies.Update(entity);
+                    _context.SaveChanges();
+                }
             }
 
             throw new ArgumentException("Invalid data in technology");
         }
 
-        private bool IsTechnologyValid(TechnologyDTO technology)
+        private bool IsTechnologyValid(TechnologyDTO technology, bool createNew)
         {
+            if (!createNew)
+            {
+                if(technology.Id == null || technology.Id == 0)
+                {
+                    return false;
+                }
+            }
             if (technology.CategoryId == 0)
             {
                 return false;
             }
-            if (string.IsNullOrEmpty(technology.Description))
+            if (string.IsNullOrWhiteSpace(technology.Description))
             {
                 return false;
             }
-            if (string.IsNullOrEmpty(technology.Name) && technology.Name.Length <= 255)
+            if (string.IsNullOrWhiteSpace(technology.Name) && technology.Name.Length <= 255)
             {
                 return false;
             }
             return true;
         }
 
-        private Technology ConvertTechnology(TechnologyDTO technology)
+        private Technology ConvertTechnology(TechnologyDTO technology, bool createNew)
         {
-            return new Technology
-            {
+            var tech = new Technology
+            { 
                 Name = technology.Name,
                 Description = technology.Description,
                 Explanation = technology.Explanation,
+                IsPublished = technology.IsPublished,
                 CategoryId = technology.CategoryId,
-                RingId = technology?.RingId
-                
+                RingId = technology?.RingId                
             };
+            if (!createNew)
+            {
+                tech.TechnologyId = technology.Id.Value;
+            }
+            return tech;
         }
     }
 }
