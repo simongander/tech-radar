@@ -26,5 +26,9 @@ namespace TechRadarApi.DAL.Model
         public Category Category { get; set; }
         [Required]
         public bool IsPublished { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime LastEditDate { get; set; }
+        public DateTime PublicationDate { get; set; }
+
     }
 }

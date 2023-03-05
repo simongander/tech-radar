@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechRadarApi.BL.Data;
+﻿using TechRadarApi.BL.Data;
 using TechRadarApi.BL.Interfaces;
 using TechRadarApi.DAL;
 using TechRadarApi.DAL.Model;
@@ -67,9 +62,14 @@ namespace TechRadarApi.BL
                     entity.Name = technology.Name;
                     entity.Description =  technology.Description;
                     entity.Explanation = technology.Explanation;
+                    if(entity.IsPublished == false && technology.IsPublished == true)
+                    {
+                        entity.PublicationDate = DateTime.Now;
+                    }
                     entity.IsPublished = technology.IsPublished;
                     entity.CategoryId = technology.CategoryId;
                     entity.RingId = technology.RingId;
+                    entity.LastEditDate = DateTime.Now;
                     var updatedEntity = _context.Technologies.Update(entity);
                     _context.SaveChanges();
                     return updatedEntity.Entity;
@@ -106,17 +106,23 @@ namespace TechRadarApi.BL
         private Technology ConvertTechnology(TechnologyDTO technology, bool createNew)
         {
             var tech = new Technology
-            { 
+            {
                 Name = technology.Name,
                 Description = technology.Description,
                 Explanation = technology.Explanation,
                 IsPublished = technology.IsPublished,
                 CategoryId = technology.CategoryId,
-                RingId = technology?.RingId                
+                RingId = technology?.RingId,
+                CreateDate = DateTime.Now,
+                LastEditDate = DateTime.Now
             };
             if (!createNew)
             {
                 tech.TechnologyId = technology.TechnologyId.Value;
+            }
+            if (tech.IsPublished)
+            {
+                tech.PublicationDate = DateTime.Now;
             }
             return tech;
         }
