@@ -28,7 +28,11 @@ export class TechRadarServiceService {
       .get<Technology[]>(this.baseUrl + "/technology/getTechnologiesInCategory?categoryId=" + categoryId);
   }
 
+  GetAllTechnologies(): Observable<Technology[]> {
+    return this.http.get<Technology[]>(this.baseUrl + "/technology/getAllTechnologies");
+  }
+
   AddOrEditTechnology(createNew: boolean, technology: Technology) : Observable<Technology> {
-    return this.http.post<Technology>(this.baseUrl + "/technology/addTechnology?createNew=" + true, technology)
+    return this.http.post<Technology>(this.baseUrl + "/technology/addTechnology?createNew=" + createNew, technology)
   }
 }

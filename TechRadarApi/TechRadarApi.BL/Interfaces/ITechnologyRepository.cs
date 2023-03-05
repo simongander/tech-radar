@@ -14,5 +14,6 @@ namespace TechRadarApi.BL.Interfaces
         List<Technology> GetTechnologies(int categoryId);
         List<Technology> GetTechnologies(int categoryId, int ringId);
         Technology AddTechnology(bool createNew, TechnologyDTO technology);
+        List<Technology> GetAllTechnologies();
     }
 }

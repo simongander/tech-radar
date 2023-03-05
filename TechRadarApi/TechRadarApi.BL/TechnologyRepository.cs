@@ -40,6 +40,11 @@ namespace TechRadarApi.BL
             return _context.Technologies.Where(t => t.CategoryId == categoryId && t.RingId == ringId && t.IsPublished).ToList();
         }
 
+        public List<Technology> GetAllTechnologies()
+        {
+            return _context.Technologies.OrderBy(t => t.CategoryId).ThenBy(t => t.RingId).ToList();
+        }
+
         public Technology AddTechnology(bool createNew, TechnologyDTO technology)
         {
             if (IsTechnologyValid(technology, createNew))
@@ -52,10 +57,10 @@ namespace TechRadarApi.BL
                 }
                 else
                 {
-                    var entities = _context.Technologies.Where(t => t.TechnologyId == technology.Id);
+                    var entities = _context.Technologies.Where(t => t.TechnologyId == technology.TechnologyId);
                     if(entities.Count() == 0)
                     {
-                        throw new ArgumentException($"No entity with id { technology.Id } found");
+                        throw new ArgumentException($"No entity with id { technology.TechnologyId } found");
                     }
 
                     var entity = entities.First();
@@ -65,8 +70,9 @@ namespace TechRadarApi.BL
                     entity.IsPublished = technology.IsPublished;
                     entity.CategoryId = technology.CategoryId;
                     entity.RingId = technology.RingId;
-                    _context.Technologies.Update(entity);
+                    var updatedEntity = _context.Technologies.Update(entity);
                     _context.SaveChanges();
+                    return updatedEntity.Entity;
                 }
             }
 
@@ -77,7 +83,7 @@ namespace TechRadarApi.BL
         {
             if (!createNew)
             {
-                if(technology.Id == null || technology.Id == 0)
+                if(technology.TechnologyId == null || technology.TechnologyId == 0)
                 {
                     return false;
                 }
@@ -110,7 +116,7 @@ namespace TechRadarApi.BL
             };
             if (!createNew)
             {
-                tech.TechnologyId = technology.Id.Value;
+                tech.TechnologyId = technology.TechnologyId.Value;
             }
             return tech;
         }

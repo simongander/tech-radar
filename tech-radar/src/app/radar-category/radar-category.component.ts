@@ -24,8 +24,8 @@ export class RadarCategoryComponent {
           for(const technology of value){
             this.technologies.push(technology)
           }
-          });
-      });
+          })
+      })
     })
     techRadarService.GetRings().subscribe(value => {
       for(const ring of value){

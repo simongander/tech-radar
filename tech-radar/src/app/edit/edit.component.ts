@@ -14,7 +14,7 @@ export class EditComponent {
 
 public techRadarService: TechRadarServiceService
 
-  constructor(techRadarService: TechRadarServiceService, private router: Router){
+  constructor(techRadarService: TechRadarServiceService, private router: Router) {
     this.radarItem = { technologyId: 0, name:"", description:"", explanation: "", categoryId: 0, ringId: 0, isPublished: false };
     techRadarService.GetRings().subscribe(value => {
       for(const ring of value){
@@ -28,6 +28,13 @@ public techRadarService: TechRadarServiceService
      });
 
      this.techRadarService = techRadarService
+  }
+
+  ngOnInit() {
+    this.addMode = history.state['addMode']
+    if(history.state['radarItem'] != null) {
+      this.radarItem = history.state['radarItem']
+    }
   }
 
   @Input()

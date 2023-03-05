@@ -35,6 +35,12 @@ namespace TechRadarApi.Controllers
             return _technologyRepository.GetTechnologies(categoryId, ringId);
         }
 
+        [HttpGet]
+        public List<Technology> GetAllTechnologies()
+        {
+            return _technologyRepository.GetAllTechnologies();
+        }
+
         [HttpPost]
         public Technology? AddTechnology([FromQuery]bool createNew, [FromBody] TechnologyDTO technology)
         {
