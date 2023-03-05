@@ -16,7 +16,8 @@ import { RadarCategoryComponent } from './radar-category/radar-category.componen
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatCardModule } from '@angular/material/card'
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 import { AdminComponent } from './admin/admin.component';
 import { EditComponent } from './edit/edit.component';
 
@@ -42,6 +43,7 @@ import { EditComponent } from './edit/edit.component';
     MatInputModule,
     MatSelectModule,
     MatCardModule,
+    MatMenuModule,
     HttpClientModule,
 
   ],

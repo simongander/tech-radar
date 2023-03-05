@@ -16,4 +16,8 @@ export class AppComponent {
   openAdminPage() {
     this.router.navigateByUrl('admin')
   }
+
+  navigateToPage(path: string) {
+    this.router.navigateByUrl(path)
+  }
 }

@@ -1,8 +1,28 @@
 <div class="grid main">
     <mat-toolbar color="primary">
-        <button mat-icon-button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>menu</mat-icon>
           </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="navigateToPage('')">
+              Home
+            </button>
+            <button mat-menu-item (click)="navigateToPage('category/Techniques')">
+              Techniques
+            </button>
+            <button mat-menu-item (click)="navigateToPage('category/Platforms')">
+              Platforms
+            </button>
+            <button mat-menu-item (click)="navigateToPage('category/Languages & Frameworks')">
+              Languages & Frameworks
+            </button>
+            <button mat-menu-item (click)="navigateToPage('category/Tools')">
+              Tools
+            </button>
+            <button mat-menu-item (click)="navigateToPage('admin')">
+              Admin
+            </button>
+          </mat-menu>
           <span>Tech-Radar</span>
           <span class="toolbar-spacer"></span>
           <button mat-button class="login-button" (click)="openAdminPage()">

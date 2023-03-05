@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Technology } from '../models/technology';
-import { TechRadarServiceService } from '../tech-radar-service.service';
 
 @Component({
   selector: 'app-radar',
@@ -10,11 +8,8 @@ import { TechRadarServiceService } from '../tech-radar-service.service';
 })
 export class RadarComponent {
 
-  constructor(techRadarService: TechRadarServiceService, private router: Router) {
+  constructor(private router: Router) {
   }
-
-  @Input()
-  public name: string = "Simon"
 
   openCategory(category: string) {
     this.router.navigateByUrl('category/' + category);
