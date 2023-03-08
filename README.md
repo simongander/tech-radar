@@ -2,11 +2,11 @@
 
 ## Installationsanleitung
 ### Voraussetzungen
-Node.js 18.14.0
-Git
-Eine beliebige IDE für das Frontend (z.b Visual Studio Code)
-Visual Studio 2022, das Paket "ASP.NET und Webentwicklung" muss installiert sein
-XAMPP für die Datenbank
+- Node.js 18.14.0
+- Git
+- Eine beliebige IDE für das Frontend (z.b Visual Studio Code)
+- Visual Studio 2022, das Paket "ASP.NET und Webentwicklung" muss installiert sein
+- XAMPP für die Datenbank
 
 ### Installation
 1. XAMPP öffnen und den Apache und MySQl Service starten
