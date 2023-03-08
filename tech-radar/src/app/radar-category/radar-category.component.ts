@@ -16,11 +16,13 @@ export class RadarCategoryComponent {
     this.route.paramMap.subscribe(params => {
       this.categoryName = params.get('category')!
       techRadarService.GetCategories().subscribe(value => {
+        this.categories = []
         for(const category of value){
           this.categories.push(category) 
         }
         this.category = this.categories.find(c => c.name === this.categoryName)!!
         techRadarService.GetTechnologies(this.category.categoryId).subscribe(value => {
+          this.technologies = []
           for(const technology of value){
             this.technologies.push(technology)
           }
@@ -28,6 +30,7 @@ export class RadarCategoryComponent {
       })
     })
     techRadarService.GetRings().subscribe(value => {
+      this.rings = []
       for(const ring of value){
         this.rings.push(ring)
       }

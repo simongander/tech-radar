@@ -1,5 +1,8 @@
 .fill {
-    width: 50%
+    @media screen and (max-width: 992px) {
+        width: 100%;
+    }
+    width: 50%;
 }
 .button-row{
     button{
